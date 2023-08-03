@@ -8,7 +8,7 @@ import ButtonPrevious from './../Buttons/ButtonPrevious/ButtonPrevious';
 import { MainContext } from "../../context/ContextProvider";
 
 const FormSide = () => {
-  const { renderComponent } = useContext(MainContext)
+  const { renderComponent, progress } = useContext(MainContext)
   return (
     <div className="main-form">
       <Sections />
@@ -16,7 +16,7 @@ const FormSide = () => {
         <h6>Xüsusi Bacarıqlar</h6>
         <ProgressBar
           barContainerClassName="bg"
-          completed={50}
+          completed={progress()}
           bgColor="#038477"
           animateOnRender={true}
           isLabelVisible={false}
