@@ -6,9 +6,10 @@ import ProgressBar from "@ramonak/react-progress-bar";
 import ButtonNext from './../Buttons/ButtonNext/ButtonNext';
 import ButtonPrevious from './../Buttons/ButtonPrevious/ButtonPrevious';
 import { MainContext } from "../../context/ContextProvider";
+import ButtonPost from './../Buttons/ButtonPost/ButtonPost';
 
 const FormSide = () => {
-  const { renderComponent, progress } = useContext(MainContext)
+  const { renderComponent, progress, answerSelected } = useContext(MainContext)
   return (
     <div className="main-form">
       <Sections />
@@ -29,7 +30,8 @@ const FormSide = () => {
             <div className="buttons-container">
               <ButtonPrevious />
             </div>
-            <ButtonNext />
+            {answerSelected === 'yes' && < ButtonNext />}
+            {answerSelected === 'no' && <ButtonPost />}
           </div>
         </form>
       </div>

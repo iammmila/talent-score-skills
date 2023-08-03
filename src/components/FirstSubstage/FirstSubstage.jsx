@@ -1,10 +1,13 @@
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import './FirstSubstage.scss'
 import { MainContext } from '../../context/ContextProvider'
 import SpecialSkill from './../SpecialSkill/SpecialSkill';
 
 const FirstSubstage = () => {
     const { handleSkillAnswerSelect, answerSelected } = useContext(MainContext)
+    useEffect(() => {
+        console.log(answerSelected);
+    }, [answerSelected]);
     return (
         <div className='firstSubstage'>
             <div className="special-skill">
@@ -17,6 +20,7 @@ const FirstSubstage = () => {
                             id="yes"
                             value={"yes"}
                             name="experience"
+                            checked={answerSelected === 'yes'}
                             onChange={handleSkillAnswerSelect}
                         />
                     </div>
@@ -27,6 +31,7 @@ const FirstSubstage = () => {
                             name="experience"
                             id="no"
                             value={"no"}
+                            checked={answerSelected === 'no'}
                             onChange={handleSkillAnswerSelect}
                         />
                     </div>
