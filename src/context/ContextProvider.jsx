@@ -1,6 +1,8 @@
 import { createContext, useState } from "react";
 import FirstSubstage from './../components/FirstSubstage/FirstSubstage';
 import SecondSubstage from './../components/SecondSubstage/SecondSubstage';
+import ButtonPost from "../components/Buttons/ButtonPost/ButtonPost";
+import ButtonNext from "../components/Buttons/ButtonNext/ButtonNext";
 export const MainContext = createContext(null);
 
 // eslint-disable-next-line react/prop-types
@@ -14,6 +16,7 @@ function ContextProvider({ children }) {
         if (currentStep === 1) { return <FirstSubstage /> }
         else { return <SecondSubstage /> }
     }
+    // const hasProfessionalSkill = selectedSkills.some(data => data.level === 'professional')
 
     // !functions
     const handleNext = () => {
@@ -46,7 +49,39 @@ function ContextProvider({ children }) {
         if (currentStep === 1) { return 50 }
         else { return 100 }
     }
+    const buttons = () => {
+        const hasProfessionalSkill = selectedSkills.some(data => data.level === 'professional');
 
+        if (answerSelected === 'yes') {
+            if (hasProfessionalSkill) {
+                if (currentStep === 2) {
+                    return <ButtonPost />
+                }
+                return <ButtonNext />
+            }
+            else if (currentStep === 2) { return <ButtonPost /> }
+            else if (!hasProfessionalSkill && selectedSkills.length > 0) {
+                return <ButtonPost />;
+            }
+        } else if (answerSelected === 'no' || currentStep === 2) {
+            return <ButtonPost />;
+        }
+        return null;
+    };
+    const handleAchievementChange = (id, value) => {
+        const updatedSkills = selectedSkills.map((skill) => {
+            if (skill.id === id) {
+                return { ...skill, achievement: value };
+            }
+            return skill;
+        });
+        setSelectedSkills(updatedSkills);
+    };
+    const handleNoChange = (id, isChecked) => {
+    if (isChecked) {
+      handleAchievementChange(id, '');
+    }
+  };
     //!VALUES
     const values = {
         currentStep,
@@ -63,8 +98,8 @@ function ContextProvider({ children }) {
         handleSkillChange,
         radioAnswerSelected,
         handleLevelSelect,
-        setRadioAnswerSelected,
-        handleDeleteSkill
+        setRadioAnswerSelected,handleNoChange,
+        handleDeleteSkill, buttons, handleAchievementChange
     };
 
     return <MainContext.Provider value={values} > {children}</MainContext.Provider >;

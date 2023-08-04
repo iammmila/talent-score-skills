@@ -3,13 +3,12 @@ import React, { useContext, useState } from "react";
 import "./FormSide.scss";
 import Sections from "../Sections/Sections";
 import ProgressBar from "@ramonak/react-progress-bar";
-import ButtonNext from './../Buttons/ButtonNext/ButtonNext';
 import ButtonPrevious from './../Buttons/ButtonPrevious/ButtonPrevious';
 import { MainContext } from "../../context/ContextProvider";
-import ButtonPost from './../Buttons/ButtonPost/ButtonPost';
 
 const FormSide = () => {
-  const { renderComponent, progress, answerSelected } = useContext(MainContext)
+  const { renderComponent, progress, buttons } = useContext(MainContext)
+
   return (
     <div className="main-form">
       <Sections />
@@ -30,8 +29,8 @@ const FormSide = () => {
             <div className="buttons-container">
               <ButtonPrevious />
             </div>
-            {answerSelected === 'yes' && < ButtonNext />}
-            {answerSelected === 'no' && <ButtonPost />}
+
+            {buttons()}
           </div>
         </form>
       </div>
