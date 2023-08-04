@@ -14,7 +14,7 @@ const SpecialSkill = () => {
     }, [selectedSkills]);
     return (
         <>
-        <div className="skill-ques1">
+            <div className="skill-ques1">
                 <span>Hansı xüsusi bacarığınız var?</span>
                 <Select
                     styles={customStyles}
@@ -40,7 +40,7 @@ const SpecialSkill = () => {
                                     <input
                                         type="radio"
                                         id={`amateur-${data.value}`}
-                                        name={`selecting`}
+                                        name={`selecting-${data.value}`}
                                         value="amateur"
                                         checked={data.level === 'amateur'}
                                         onChange={() => handleLevelSelect(data.id, 'amateur')}
@@ -51,7 +51,7 @@ const SpecialSkill = () => {
                                     <input
                                         type="radio"
                                         id={`professional-${data.value}`}
-                                        name={`selecting`}
+                                        name={`selecting-${data.value}`}
                                         value="professional"
                                         checked={data.level === 'professional'}
                                         onChange={() => handleLevelSelect(data.id, 'professional')}
