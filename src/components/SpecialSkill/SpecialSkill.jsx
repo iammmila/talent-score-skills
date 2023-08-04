@@ -7,7 +7,7 @@ import { useContext, useEffect } from 'react'
 import { MainContext } from '../../context/ContextProvider'
 
 const SpecialSkill = () => {
-    const { selectedSkills, handleSkillChange, handleLevelSelect } = useContext(MainContext)
+    const { selectedSkills, handleSkillChange, handleLevelSelect, handleDeleteSkill } = useContext(MainContext)
 
     useEffect(() => {
         console.log(selectedSkills);
@@ -33,7 +33,7 @@ const SpecialSkill = () => {
                             return <li className="radios" key={data.value}>
                                 <div className='special'>
                                     <label htmlFor="delete">{data.value}</label>
-                                    <img src={Delete} alt="delete" />
+                                    <img src={Delete} alt="delete" onClick={() => handleDeleteSkill(data.id)} />
                                 </div>
                                 <div>
                                     <label htmlFor={`amateur-${data.value}`}>Həvəskar</label>

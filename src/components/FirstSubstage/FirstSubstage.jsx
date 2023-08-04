@@ -6,7 +6,6 @@ import SpecialSkill from './../SpecialSkill/SpecialSkill';
 const FirstSubstage = () => {
     const { handleSkillAnswerSelect, answerSelected } = useContext(MainContext)
     useEffect(() => {
-        console.log(answerSelected);
     }, [answerSelected]);
     return (
         <div className='firstSubstage'>

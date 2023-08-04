@@ -1,8 +1,9 @@
 const skills = [
-  { value: "Resm", label: "Resm" },
-  { value: "Musiqi", label: "Musiqi" },
-  { value: "Rəqs", label: "Rəqs" },
+  { id: 1, value: "Resm", label: "Resm" },
+  { id: 2, value: "Musiqi", label: "Musiqi" },
+  { id: 3, value: "Rəqs", label: "Rəqs" },
   {
+    id: 4,
     value: "Yazıçılıq",
     label: "Yazıçılıq",
   },

@@ -9,8 +9,6 @@ function ContextProvider({ children }) {
     const [currentStep, setCurrentStep] = useState(1)
     const [answerSelected, setAnswerSelected] = useState("");
     const [selectedSkills, setSelectedSkills] = useState([])
-    const [amateur, setAmateur] = useState([])
-    const [professional, setProfessional] = useState([])
     const [radioAnswerSelected, setRadioAnswerSelected] = useState('')
     const renderComponent = () => {
         if (currentStep === 1) { return <FirstSubstage /> }
@@ -31,7 +29,6 @@ function ContextProvider({ children }) {
         setSelectedSkills(selectedOptions);
     };
     const handleLevelSelect = (skillId, level) => {
-        console.log('handleLevelSelect called', skillId, level);
         const updatedSkills = selectedSkills.map((skill) => {
             if (skill.id === skillId) {
                 return { ...skill, level };
@@ -41,12 +38,10 @@ function ContextProvider({ children }) {
 
         setSelectedSkills(updatedSkills);
     };
-    const handleLevelAmateurSelect = (event) => {
-        setAmateur(event.target.value)
-    }
-    const handleLevelProfessionalSelect = (event) => {
-        setProfessional(event.target.value)
-    }
+    const handleDeleteSkill = (id) => {
+        const updatedSkills = selectedSkills.filter((skill) => skill.id !== id);
+        setSelectedSkills(updatedSkills);
+    };
     const progress = () => {
         if (currentStep === 1) { return 50 }
         else { return 100 }
@@ -66,12 +61,10 @@ function ContextProvider({ children }) {
         selectedSkills,
         setSelectedSkills,
         handleSkillChange,
-        amateur,
-        setAmateur,
-        professional, handleLevelSelect,
-        setProfessional,
-        radioAnswerSelected, handleLevelProfessionalSelect, handleLevelAmateurSelect,
-        setRadioAnswerSelected
+        radioAnswerSelected,
+        handleLevelSelect,
+        setRadioAnswerSelected,
+        handleDeleteSkill
     };
 
     return <MainContext.Provider value={values} > {children}</MainContext.Provider >;
