@@ -14,7 +14,7 @@ const SpecialSkill = () => {
     }, [selectedSkills]);
     return (
         <>
-            <div className="skill-ques1">
+        <div className="skill-ques1">
                 <span>Hansı xüsusi bacarığınız var?</span>
                 <Select
                     styles={customStyles}

@@ -6,20 +6,22 @@ const SecondSubstage = () => {
     const { selectedSkills } = useContext(MainContext)
     return (
         <ul className='skills-lists'>
-            {selectedSkills.map(data => {
-                return (
-                    <li className='skill-list' key={data.value}>
-                        <span>{data.value} bacarığınıza görə əldə etdiyiniz nailiyyəti qeyd edin.*</span>
-                        <div>
-                            <input className='achievement' type="text" />
+            {selectedSkills
+                .filter(data => data.level === 'professional')
+                .map(data => {
+                    return (
+                        <li className='skill-list' key={data.value}>
+                            <span>{data.value} bacarığınıza görə əldə etdiyiniz nailiyyəti qeyd edin.*</span>
                             <div>
-                                <label htmlFor="no">Yoxdur</label>
-                                <input type="radio" name="no" id="no" />
+                                <input className='achievement' type="text" />
+                                <div>
+                                    <label htmlFor="no">Yoxdur</label>
+                                    <input type="radio" name="no" id="no" />
+                                </div>
                             </div>
-                        </div>
-                    </li>
-                )
-            })}
+                        </li>
+                    )
+                })}
         </ul >
     )
 }
